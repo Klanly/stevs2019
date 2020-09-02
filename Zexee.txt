@@ -1,0 +1,6 @@
+kplr64\bin\link.exe /nologo /LIBPATH:Q:\9\kpk\lib64 /LIBPATH:E:\r\cud\kplr64\lib /out:Blender.exe /DEBUG /pdb:Blender.pdb @1objlist.txt @1liblist.txt /LTCG
+
+kplr64\bin\link.exe /dll /machine:x64 /nologo /LIBPATH:Q:\9\kpk\lib64 /LIBPATH:E:\r\cud\kplr64\lib /def:BlenderDLL.def /out:BlenderDLL.dll /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:BlenderDLL.dll.manifest /DEBUG /pdb:BlenderDLL.pdb Dll.obj @2liblist.txt /LTCG
+
+kplr64\bin\cl.exe /nologo /MD /Ot /Ox /W3 /DWIN32 /DNDEBUG /D_WINDOWS /D_UNICODE /DUNICODE  /MD /GA /GL /GS- /arch:SSE2 /IE:\r\cud\kplr64\include /IQ:\9\kpk\include\km /IQ:\9\kpk\include\um /IQ:\9\kpk\include\shared /IQ:\9\kpk\include\ucrt /c DLL.c /FoDLL.obj
+
