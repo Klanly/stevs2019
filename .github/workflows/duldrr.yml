@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\PROGRAM FILES (X86)\WINDOWS KITS\10\LIB\10.0.17763.0\UCRT\X64" -mqs -ms=on
+        run: 7z a C:\v2019c.7z "C:\PROGRAM FILES (X86)\WINDOWS KITS\10\LIB\10.0.17763.0\UM\X64" -mqs -ms=on
           
       - name: uploadexe
         if: always()
