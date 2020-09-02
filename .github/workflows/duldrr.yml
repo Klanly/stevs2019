@@ -27,8 +27,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          title: kuupr
-            - files:[C:\v2019c.7z]
+          name: exacu
+          path: C:\v2019c.7z
           
           
      
