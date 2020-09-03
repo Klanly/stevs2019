@@ -16,19 +16,50 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+         
+
+          
+
+      - name: Install dependencies
+        run: |
+          pip3 install six numpy wheel keras_applications keras_preprocessing opt_einsum pandas protobuf wrapt gast==0.3.3 --no-deps
+          pip3 install six numpy --no-deps
+          C:
+          cd /
+          md tfmake
+          cd tfmake
+          git clone --branch r1.14 https://github.com/tensorflow/tensorflow.git c:\tfmake\tf14
+          cd tf14
+          Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/3.0.0/bazel-3.0.0-windows-x86_64.exe" -OutFile bazel.exe
+          call "C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\ENTERPRISE\VC\Auxiliary\Build\vcvarsall.bat" x64
+          SET USE_BAZEL_VERSION=2.0.0
+          SET BAZEL_VS="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+          SET BAZEL_VC="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
+          bazelisk build --config=v1 --config=windows
+
+
+          
+          
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\PROGRAM FILES (X86)\WINDOWS KITS\10\LIB\10.0.17763.0\UM\X64" -mqs -ms=on
+        run: 7z a C:\tfbb.7z "c:\tfmake" -mqs -ms=on
           
       - name: uploadexe
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: exacu
-          path: C:\v2019c.7z
+          name: finaa
+          path: C:\tfbb.7z
           
           
      
