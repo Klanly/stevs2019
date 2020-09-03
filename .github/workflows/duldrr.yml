@@ -28,8 +28,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
          
 
-          
-
+      
+           
+      
       - name: Install dependencies
         run: |
           pip3 install six numpy wheel keras_applications keras_preprocessing opt_einsum pandas protobuf wrapt gast==0.3.3 --no-deps
@@ -41,11 +42,13 @@ jobs:
           git clone --branch r1.14 https://github.com/tensorflow/tensorflow.git c:\tfmake\tf14
           cd tf14
           Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/3.0.0/bazel-3.0.0-windows-x86_64.exe" -OutFile bazel.exe
-          call "C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\ENTERPRISE\VC\Auxiliary\Build\vcvarsall.bat" x64
-          SET USE_BAZEL_VERSION=2.0.0
-          SET BAZEL_VS="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-          SET BAZEL_VC="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
+          
+          
           bazelisk build --config=v1 --config=windows
+        env:
+          USE_BAZEL_VERSION: 2.0.0
+          BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
 
 
           
