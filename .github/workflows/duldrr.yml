@@ -44,13 +44,20 @@ jobs:
           Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/3.0.0/bazel-3.0.0-windows-x86_64.exe" -OutFile bazel.exe
           
           
-          bazelisk build --config=windows
+          
         env:
           USE_BAZEL_VERSION: 2.0.0
           BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
 
-
+      - name: runbash
+        shell: bash
+        run: c:/tfmake/tf14/tensorflow/tools/ci_build/windows/libtensorflow_cpu.sh
+        
+        env:
+          USE_BAZEL_VERSION: 2.0.0
+          BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
           
           
       - name: ziping
