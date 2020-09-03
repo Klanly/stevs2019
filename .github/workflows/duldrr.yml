@@ -49,6 +49,8 @@ jobs:
           USE_BAZEL_VERSION: 2.0.0
           BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
+          PYTHON_DIRECTORY: c:\hostedtoolcache\windows\python\3.7.9\x64 :  
+          
 
       - name: runbash
         shell: bash
@@ -58,6 +60,7 @@ jobs:
           USE_BAZEL_VERSION: 2.0.0
           BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
+          PYTHON_DIRECTORY: c:\hostedtoolcache\windows\python\3.7.9\x64 
           
           
       - name: ziping
