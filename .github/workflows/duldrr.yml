@@ -22,8 +22,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: setup msys
-        uses: msys2/setup-msys2@v2
+
         
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -53,6 +52,7 @@ jobs:
           BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
           PYTHON_DIRECTORY: c:\hostedtoolcache\windows\python\3.7.9\x64
+          BAZEL_SH: C:\Program Files\Git\bin\bash.exe
           
 
       - name: runbash
@@ -64,6 +64,7 @@ jobs:
           BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
           PYTHON_DIRECTORY: hostedtoolcache\windows\python\3.7.9\x64
+          BAZEL_SH: C:\Program Files\Git\bin\bash.exe
           
           
       - name: ziping
