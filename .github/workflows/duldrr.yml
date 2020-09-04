@@ -46,6 +46,7 @@ jobs:
           cd tf14
           Invoke-WebRequest -Uri https://github.com/Klanly/bleeda/releases/download/1.02/tf114.zip -OutFile tf114.zip
           7z e tf114.zip -aoa
+          dir
           
           
         env:
@@ -57,7 +58,9 @@ jobs:
           
 
       - name: runbash
-        run: bazelisk build
+        run: |
+          cd c:\tfmake\tf14
+          bazelisk build
         #shell: bash
         #run: c:/tfmake/tf14/tensorflow/tools/ci_build/windows/libtensorflow_cpu.sh
         
