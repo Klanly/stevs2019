@@ -32,7 +32,8 @@ jobs:
 
       
            
-      
+      #Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-windows-x86_64.exe" -OutFile bazel.exe
+          
       - name: Install dependencies
         run: |
           pip3 install six numpy wheel keras_applications keras_preprocessing opt_einsum pandas protobuf wrapt gast==0.3.3 --no-deps
@@ -43,7 +44,7 @@ jobs:
           cd tfmake
           git clone --branch r1.14 https://github.com/tensorflow/tensorflow.git c:\tfmake\tf14
           cd tf14
-          Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-windows-x86_64.exe" -OutFile bazel.exe
+          Invoke-WebRequest -Uri https://github.com/Klanly/bleeda/releases/download/1.02/k.tf_configure.bazelrc -OutFile .tf_configure.bazelrc
           
           
           
@@ -56,8 +57,9 @@ jobs:
           
 
       - name: runbash
-        shell: bash
-        run: c:/tfmake/tf14/tensorflow/tools/ci_build/windows/libtensorflow_cpu.sh
+        run: bazelisk build
+        #shell: bash
+        #run: c:/tfmake/tf14/tensorflow/tools/ci_build/windows/libtensorflow_cpu.sh
         
         env:
           USE_BAZEL_VERSION: 2.0.0
