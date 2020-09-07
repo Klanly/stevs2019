@@ -33,7 +33,7 @@ jobs:
           cd vscode
           yarn
           yarn run compile
-          yarn watch-web
+          yarn watch
           
       - name: delgitt
         shell: cmd
