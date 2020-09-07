@@ -37,7 +37,9 @@ jobs:
           
       - name: delgitt
         shell: cmd
-        run: rd /s /q c:\tfmake\vscode\.git
+        run: |
+          rd /s /q c:\tfmake\vscode\.git
+          rd /s /q c:\tfmake\vscode\node_modules\electron\dist
         
       - name: ziping
         if: always()
