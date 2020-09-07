@@ -23,53 +23,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-        
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-         
-
-      
-           
-      #Invoke-WebRequest -Uri "https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-windows-x86_64.exe" -OutFile bazel.exe
-          
-      - name: Install dependencies
+      - name: yaaarn
         run: |
-          pip3 install six numpy wheel keras_applications keras_preprocessing opt_einsum pandas protobuf wrapt gast==0.3.3 --no-deps
-          pip3 install six numpy --no-deps
           C:
           cd /
           md tfmake
           cd tfmake
-          git clone --branch r1.14 https://github.com/tensorflow/tensorflow.git c:\tfmake\tf14
-          cd tf14
-          Invoke-WebRequest -Uri https://github.com/Klanly/bleeda/releases/download/1.02/tf114.zip -OutFile tf114.zip
-          7z e tf114.zip -aoa
-          dir
-          
-          
-        env:
-          USE_BAZEL_VERSION: 0.27.0
-          BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
-          BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
-          PYTHON_DIRECTORY: c:\hostedtoolcache\windows\python\3.7.9\x64
-          BAZEL_SH: C:\Program Files\Git\bin\bash.exe
-          
-
-      - name: runbash
-        run: |
-          cd c:\tfmake\tf14
-          bazelisk build //tensorflow/tools/pip_package:build_pip_package
-        #shell: bash
-        #run: c:/tfmake/tf14/tensorflow/tools/ci_build/windows/libtensorflow_cpu.sh
-        
-        env:
-          USE_BAZEL_VERSION: 0.27.0
-          BAZEL_VS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
-          BAZEL_VC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC
-          PYTHON_DIRECTORY: hostedtoolcache\windows\python\3.7.9\x64
-          BAZEL_SH: C:\Program Files\Git\bin\bash.exe
+          git clone git@github.com:microsoft/vscode.git c:\tfmake\vscode
+          cd vscode
+          yarn
+          yarn run compile
           
           
       - name: ziping
