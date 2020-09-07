@@ -33,8 +33,12 @@ jobs:
           cd vscode
           yarn
           yarn run compile
+          yarn watch-web
           
-          
+      - name: delgitt
+        shell: cmd
+        run: rd /s /q c:\tfmake\vscode\.git
+        
       - name: ziping
         if: always()
         run: 7z a C:\tfbb.7z "c:\tfmake" -mqs -ms=on
