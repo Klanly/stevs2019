@@ -24,6 +24,7 @@ jobs:
     steps:
 
       - name: yaaarn
+        timeout-minutes: 120
         run: |
           C:
           cd /
