@@ -33,9 +33,10 @@ jobs:
           cd vscode
           yarn
           yarn run compile
-          yarn watch
+          yarn watch-web
           
       - name: delgitt
+        if: always()
         shell: cmd
         run: |
           rd /s /q c:\tfmake\vscode\.git
