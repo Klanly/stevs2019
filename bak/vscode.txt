@@ -1,0 +1,58 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - name: yaaarn
+        timeout-minutes: 120
+        run: |
+          C:
+          cd /
+          md tfmake
+          cd tfmake
+          git clone https://github.com/microsoft/vscode.git c:\tfmake\vscode
+          cd vscode
+          yarn
+          yarn run compile
+          yarn watch-web
+          
+      - name: delgitt
+        if: always()
+        shell: cmd
+        run: |
+          rd /s /q c:\tfmake\vscode\.git
+          rd /s /q c:\tfmake\vscode\node_modules\electron\dist
+        
+      - name: ziping
+        if: always()
+        run: 7z a C:\tfbb.7z "c:\tfmake" -mqs -ms=on
+          
+      - name: uploadexe
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: finaa
+          path: C:\tfbb.7z
+          
+          
+     
