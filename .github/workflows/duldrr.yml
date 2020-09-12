@@ -8,6 +8,10 @@ jobs:
       with:
         repository: Tencent/ncnn
         submodules: true
+    - name: patching
+      run: |
+        del src\CMakeLists.txt
+        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/CMakeLists.txt -OutFile src\CMakeLists.txt
     - name: cache-protobuf
       id: cache-protobuf
       uses: actions/cache@v1
