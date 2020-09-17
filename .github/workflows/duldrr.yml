@@ -8,6 +8,13 @@ jobs:
       with:
         repository: nihui/realsr-ncnn-vulkan
         submodules: 'recursive'
+    
+    - name: patching
+      run: |
+        del src\CMakeLists.txt
+        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/realsrcm.txt -OutFile src\CMakeLists.txt
+        del src\ncnn\src\CMakeLists.txt
+        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/rsrncnn.txt -OutFile src\ncnn\src\CMakeLists.txt
     - name: cache-vulkansdk
       id: cache-vulkansdk
       uses: actions/cache@v1
