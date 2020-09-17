@@ -11,8 +11,8 @@ jobs:
     
     - name: patching
       run: |
-        Remove-Item -Recurse -Force ncnn
-        git clone https://github.com/Tencent/ncnn.git ncnn
+        Remove-Item -Recurse -Force src/ncnn
+        git clone https://github.com/Tencent/ncnn.git src/ncnn
         del src\CMakeLists.txt
         Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/realsrcm.txt -OutFile src\CMakeLists.txt
         del src\ncnn\src\CMakeLists.txt
