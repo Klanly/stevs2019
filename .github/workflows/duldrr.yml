@@ -47,5 +47,5 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v2
       with:
-        name: finaa
+        name: tfbb.7z
         path: C:\tfbb.7z
