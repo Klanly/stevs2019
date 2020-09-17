@@ -31,7 +31,7 @@ jobs:
     - name: ziping
       if: always()
       run: |
-        rd /s /q models
+        Remove-Item -Recurse -Force models
         7z a C:\tfbb.7z "$env:GITHUB_WORKSPACE\build" -mqs -ms=on
       
     - name: uploadexe
