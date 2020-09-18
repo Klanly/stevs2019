@@ -3,10 +3,12 @@ on: [push, pull_request]
 jobs:
   windows-2019:
     runs-on: windows-2019
+    #nihui/realsr-ncnn-vulkan
+    #nihui/waifu2x-ncnn-vulkan    #cm_wf.txt
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: nihui/realsr-ncnn-vulkan
+        repository: nihui/waifu2x-ncnn-vulkan
         submodules: 'recursive'
     
     - name: patching
@@ -14,9 +16,12 @@ jobs:
         Remove-Item -Recurse -Force src/ncnn
         git clone --recursive https://github.com/Tencent/ncnn.git src/ncnn
         del src\CMakeLists.txt
-        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/realsrcm.txt -OutFile src\CMakeLists.txt
         del src\ncnn\src\CMakeLists.txt
-        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/CMakeLists.txt -OutFile src\ncnn\src\CMakeLists.txt
+        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/0bpath.7z -OutFile pt.7z
+        7z x -aoa pt.7z
+        move cm_00.txt src\ncnn\src\CMakeLists.txt
+        move cm_wf.txt src\CMakeLists.txt
+        
     - name: cache-vulkansdk
       id: cache-vulkansdk
       uses: actions/cache@v1
