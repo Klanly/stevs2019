@@ -37,6 +37,7 @@ jobs:
           Invoke-WebRequest -Uri https://cdn01.doax-venusvacation.jp/production/patch_data/resource/major_ver_017/$line -OutFile $line
           C:\zdxvvdl\$line
           dir /s "C:\zdxvv"
+          
           }
           
           
