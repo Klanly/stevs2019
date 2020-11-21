@@ -37,7 +37,7 @@ jobs:
           C:\zdxvvdl\APP004000000000_70da0fef.exe
           foreach($line in Get-Content C:\zdxvvdl\xcuta.txt) {
           Invoke-WebRequest -Uri https://cdn01.doax-venusvacation.jp/production/patch_data/resource/major_ver_017/$line -OutFile $line
-          Invoke-Expression C:\zdxvvdl\asku.exe $line
+          Invoke-Expression "C:\zdxvvdl\asku.exe $line"
           }
           
           
