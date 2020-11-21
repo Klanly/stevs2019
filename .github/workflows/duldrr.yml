@@ -30,6 +30,7 @@ jobs:
           Invoke-WebRequest -Uri https://cdn01.doax-venusvacation.jp/production/patch_data/app/ver.04.00.00/APP004000000000_70da0fef.exe -OutFile APP004000000000_70da0fef.exe
           Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/KT.reg -OutFile KT.reg
           reg import KT.reg
+          dir
           APP004000000000_70da0fef.exe
           
           
