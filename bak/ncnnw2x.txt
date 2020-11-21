@@ -1,0 +1,100 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Klanly 
+Klanly
+/
+stevs2019
+1
+0
+0
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+stevs2019/.github/workflows/duldrr.yml
+@Klanly
+Klanly Update duldrr.yml
+Latest commit d804c68 on 20 Sep
+ History
+ 1 contributor
+56 lines (52 sloc)  1.94 KB
+  
+name: windows-x64-gpu-vs2019
+on: [push, pull_request]
+jobs:
+  windows-2019:
+    runs-on: windows-2019
+    #nihui/realsr-ncnn-vulkan #cm_rlsr.txt
+    #nihui/waifu2x-ncnn-vulkan    #cm_wf.txt
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: nihui/realsr-ncnn-vulkan
+        submodules: 'recursive'
+    
+    - name: patching
+      run: |
+        Remove-Item -Recurse -Force src/ncnn
+        git clone --recursive https://github.com/Tencent/ncnn.git src/ncnn
+        del src\CMakeLists.txt
+        del src\ncnn\src\CMakeLists.txt
+        Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/0bpath.7z -OutFile pt.7z
+        7z x -aoa pt.7z
+        move cm_00.txt src\ncnn\src\CMakeLists.txt
+        move cm_rlsr.txt src\CMakeLists.txt
+        
+    - name: cache-vulkansdk
+      id: cache-vulkansdk
+      uses: actions/cache@v1
+      with:
+        path: "VulkanSDK"
+        key: VulkanSDK-1.2.135.0-Installer-4
+    - name: vulkansdk
+      if: steps.cache-vulkansdk.outputs.cache-hit != 'true'
+      run: |
+        Invoke-WebRequest -Uri https://sdk.lunarg.com/sdk/download/1.2.135.0/windows/VulkanSDK-1.2.135.0-Installer.exe?Human=true -OutFile VulkanSDK-1.2.135.0-Installer.exe
+        7z x -aoa ./VulkanSDK-1.2.135.0-Installer.exe -oVulkanSDK
+        Remove-Item .\VulkanSDK\Demos, .\VulkanSDK\Samples, .\VulkanSDK\Third-Party, .\VulkanSDK\Tools, .\VulkanSDK\Tools32, .\VulkanSDK\Bin32, .\VulkanSDK\Lib32 -Recurse
+    - name: configure
+      run: |
+        $env:VULKAN_SDK="$(pwd)/VulkanSDK"
+        mkdir build; cd build
+        cmake -A x64 ../src
+    - name: build
+      run: cmake --build build --config Release -j 2
+      
+    - name: ziping
+      if: always()
+      run: |
+        Remove-Item -Recurse -Force models
+        7z a C:\tfbb.7z "$env:GITHUB_WORKSPACE\build" -mqs -ms=on
+      
+    - name: uploadexe
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: tfbb.7z
+        path: C:\tfbb.7z
+c 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
