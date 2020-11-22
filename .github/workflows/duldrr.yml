@@ -28,7 +28,7 @@ jobs:
           Invoke-WebRequest -Uri https://github.com/DavidHiggis/HomeworkA1/releases/download/1.15520.15529/ue4r.7z -OutFile ue4r.7z
           7z x ue4r.7z -oC:\
           del C:\ue4r\ue4r.7z
-          cmd /c C:\ue4r\Setup.bat
+          cmd /c C:\ue4r\Setup.bat -exclude=Mac -exclude=iOS -exclude=Linux -exclude=Android -exclude=HoloLens -exclude=TVOS
           cmd /c C:\ue4r\GenerateProjectFiles.bat
           msbuild C:\ue4r\UE4.sln /p:Configuration="Development Editor" /p:Platform="Win64"
       
