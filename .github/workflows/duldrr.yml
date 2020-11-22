@@ -24,22 +24,12 @@ jobs:
         run: |
           C:
           cd /
-          md zdxvv
-          md zdxvvdl_f
-          md zdxvvdl
-          cd zdxvvdl
-          Invoke-WebRequest -Uri https://raw.githubusercontent.com/Klanly/stevs2019/master/xcuta.txt -OutFile xcuta.txt
-          Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/asku.zip -OutFile asku.exe
-          Invoke-WebRequest -Uri https://cdn01.doax-venusvacation.jp/production/patch_data/app/ver.04.00.00/APP004000000000_70da0fef.exe -OutFile APP004000000000_70da0fef.exe
-          Invoke-WebRequest -Uri https://github.com/Klanly/stevs2019/releases/download/3.0/KT.reg -OutFile KT.reg
-          reg import KT.reg
+          md ue4
+          cd ue4
+          Invoke-WebRequest -Uri https://github.com/DavidHiggis/HomeworkA1/releases/download/1.15520.15529/ue4r.7z -OutFile ue4r.7z
+          7z x ue4r.7z -oC:\ue4\
           dir
-          C:\zdxvvdl\APP004000000000_70da0fef.exe
-          foreach($line in Get-Content C:\zdxvvdl\xcuta.txt) {
-          Invoke-WebRequest -Uri https://cdn01.doax-venusvacation.jp/production/patch_data/resource/major_ver_017/$line -OutFile $line
-          Invoke-Expression "C:\zdxvvdl\asku.exe $line"
-          }
-          
+      
           
           
       - name: ziping
