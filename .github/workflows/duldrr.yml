@@ -24,10 +24,10 @@ jobs:
         run: |
           C:
           cd /
-          md ue4
-          cd ue4
+          md ue4r
+          cd ue4r
           Invoke-WebRequest -Uri https://github.com/DavidHiggis/HomeworkA1/releases/download/1.15520.15529/ue4r.7z -OutFile ue4r.7z
-          7z x ue4r.7z -oC:\ue4\
+          7z x ue4r.7z -oC:\
           dir
       
           
