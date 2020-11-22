@@ -20,7 +20,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: dlru
-        timeout-minutes: 120
         run: |
           C:
           cd /
@@ -28,20 +27,25 @@ jobs:
           cd ue4r
           Invoke-WebRequest -Uri https://github.com/DavidHiggis/HomeworkA1/releases/download/1.15520.15529/ue4r.7z -OutFile ue4r.7z
           7z x ue4r.7z -oC:\
-          dir
+          cmd /c C:\ue4r\Setup.bat
+          cmd /c C:\ue4r\GenerateProjectFiles.bat
+          msbuild C:\ue4r\UE4.sln /p:Configuration="Development Editor" /p:Platform="Win64"
       
           
           
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\zdxvvdl_f" -mqs -ms=on
+        run: 7z a C:\v2019c.7z "C:\ue4r" -mqs -ms=on
           
-      - name: uploadexe
-        if: always()
-        uses: actions/upload-artifact@v2
+      - name: Create a new GitHub release if a new tag is pushed
+        uses: softprops/action-gh-release@b28d815 #@v1
         with:
-          name: exacu
-          path: C:\v2019c.7z
+          files: |
+            C:\v2019c.7z
+          body: |
+            If your antiv software.
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           
           
      
