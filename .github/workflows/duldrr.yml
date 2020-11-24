@@ -28,9 +28,6 @@ jobs:
           cd ngrok
           Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/ngg.zip -OutFile ngg.zip
           7z x ngg.zip -oC:\ngrok
-          Invoke-WebRequest -Uri https://github.com/DavidHiggis/HomeworkA1/releases/download/1.15520.15529/ue4r.7z -OutFile ue4r.7z
-          7z x ue4r.7z -oC:\
-          del C:\ngrok\ue4r.7z
       - name: Auth
         run: C:\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
         env:
@@ -47,12 +44,8 @@ jobs:
       - name: dlru
         run: |
           cmd /c C:\ngrok\stang.bat
-          C:
-          cd /
-          cd ue4r
-          cmd /c C:\ue4r\Setup.bat -exclude=Mac -exclude=iOS -exclude=Linux -exclude=Android -exclude=HoloLens -exclude=TVOS
-          cmd /c C:\ue4r\GenerateProjectFiles.bat
-          msbuild C:\ue4r\UE4.sln /p:Configuration="Development Editor" /p:Platform="Win64"
+          C:\ngrok\puser.exe abc
+ 
       
           
           
