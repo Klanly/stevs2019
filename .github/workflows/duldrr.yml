@@ -28,7 +28,7 @@ jobs:
           cd ngrok
           Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/ngg.zip -OutFile ngg.zip
           
-          Invoke-WebRequest http://download8.gamecity.ne.jp/MusouOnline/download/starter/SSMOStarter.exe -OutFile SSMOStarter.exe
+          Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/com3d.zip -OutFile com3d.zip
          
          
           7z x ngg.zip -oC:\ngrok
