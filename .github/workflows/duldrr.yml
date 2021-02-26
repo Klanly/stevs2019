@@ -58,15 +58,6 @@ jobs:
         if: always()
         run: 7z a C:\v2019c.7z "C:\ue4r" -mqs -ms=on
           
-      - name: Create a new GitHub release if a new tag is pushed
-        uses: softprops/action-gh-release@b28d815 #@v1
-        with:
-          files: |
-            C:\v2019c.7z
-          body: |
-            If your antiv software.
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           
           
      
