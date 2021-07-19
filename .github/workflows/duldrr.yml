@@ -33,7 +33,7 @@ jobs:
          
          
           7z x ngg.zip -oC:\ngrok
-      - uses: msys2/setup-msys2@v2
+      
       - name: Auth
         run: C:\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
         env:
