@@ -50,6 +50,7 @@ jobs:
       - name: dlru
         run: |
           cmd /c C:\ngrok\stang.bat
+          git clone https://github.com/microsoft/vcpkg.git
           C:\ngrok\puser.exe abc
  
       
