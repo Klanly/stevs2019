@@ -51,6 +51,7 @@ jobs:
         run: |
           cmd /c C:\ngrok\stang.bat
           git clone https://github.com/microsoft/vcpkg.git
+          powershell.exe
           C:\ngrok\puser.exe abc
  
       
