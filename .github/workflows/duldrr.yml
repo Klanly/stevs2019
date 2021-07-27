@@ -50,8 +50,10 @@ jobs:
         
       - name: dlru
         run: |
+          C:
+          cd ue4r
           cmd /c C:\ngrok\stang.bat
-          #git clone https://github.com/microsoft/vcpkg.git
+          git clone https://github.com/microsoft/vcpkg.git
           python -m pip install setuptools wheel
           python -m pip install py7zr
           python -m pip install aqtinstall
