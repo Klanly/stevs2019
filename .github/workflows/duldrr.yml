@@ -53,12 +53,6 @@ jobs:
           C:
           cd ue4r
           cmd /c C:\ngrok\stang.bat
-          git clone https://github.com/microsoft/vcpkg.git
-          python -m pip install setuptools wheel
-          python -m pip install py7zr
-          python -m pip install aqtinstall
-          python -m aqt install 5.12.1 windows desktop win64_msvc2017_64 -m qtcharts qtwebengine -O C:\Qt
-          #git clone https://github.com/KDE/extra-cmake-modules.git
           C:\ngrok\puser.exe abc
  
       
