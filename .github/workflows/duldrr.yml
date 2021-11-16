@@ -47,18 +47,48 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
       
         
-      - name: dlru
+      - name: xe1
+        if: always()
         run: |
           C:
           cd /
           cd ngrok
           C:\ngrok\puser.exe
+      - name: xe2
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe3
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe4
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe5
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe6
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe7
+        if: always()
+        run: |
           C:\ngrok\puser.exe
+      - name: xe8
+        if: always()
+        run: |
+          C:\ngrok\puser.exe
+      - name: xe9
+        if: always()
+        run: |
+          C:\ngrok\puser.exe
+      - name: xe10
+        if: always()
+        run: |
           C:\ngrok\puser.exe
 
           
