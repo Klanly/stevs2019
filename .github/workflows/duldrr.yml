@@ -50,8 +50,8 @@ jobs:
       - name: dlru
         run: |
           C:
-          cd ue4r
-          cmd /c C:\ngrok\stang.bat
+          cd /
+          cd ngrok
           C:\ngrok\puser.exe abc
  
       
