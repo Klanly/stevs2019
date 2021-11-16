@@ -52,7 +52,14 @@ jobs:
           C:
           cd /
           cd ngrok
-          C:\ngrok\puser.exe abc
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
+          C:\ngrok\puser.exe
 
           
       - name: ziping
