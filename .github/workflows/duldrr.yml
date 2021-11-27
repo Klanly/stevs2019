@@ -33,6 +33,10 @@ jobs:
           Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/com3d.zip -OutFile com3d.zip
        
           7z x ngg.zip -oC:\ngrok
+          
+          Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/pkr.zip -OutFile pkr.zip
+       
+          7z x pkr.zip -oC:\ngrok
       
       - name: Auth
         run: C:\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
