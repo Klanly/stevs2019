@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\bin" -mqs -ms=on
+        run: 7z a C:\v2019c.7z "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin" -mqs -ms=on
           
       - name: uploadexe
         if: always()
