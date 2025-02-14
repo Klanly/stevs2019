@@ -25,11 +25,12 @@ jobs:
         run: |
           git clone https://github.com/llvm/llvm-project.git
           md build
+          cd build
           cmake -G Ninja ../llvm-project/llvm -DLLVM_TARGETS_TO_BUILD="X86" -DLLVM_NATIVE_ARCH=x86_64 -DLLVM_HOST_TRIPLE=x86_64-window-x86-gnu -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_MAKE_PROGRAM=ninja -DLLVM_ENABLE_ASSERTIONS=ON -DLLVM_ENABLE_RUNTIMES=all -DLLVM_ENABLE_PROJECTS="compiler-rt;polly;bolt;clang;clang-tools-extra;libc;libclc;lld;lldb;mlir;openmp;pstl"
 
       - name: ziping
         if: always()
-        run: 7z a C:\llvmbd.7z .\build
+        run: 7z a C:\llvmbd.7z D:\a\stevs2019\stevs2019\build
           
       - name: uploadexe
         if: always()
