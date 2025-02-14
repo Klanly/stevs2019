@@ -5,10 +5,12 @@ name: CI
 # https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      opencv-version:
+        description: The version of OpenCV
+        required: true
+        default: 4.5.2
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
