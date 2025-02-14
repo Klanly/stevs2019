@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
+# events but only for the master branch
+on:
+  workflow_dispatch:
+    inputs:
+      opencv-version:
+        description: The version of OpenCV
+        required: true
+        default: 4.5.2
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ziping
+        if: always()
+        run: 7z a C:\v2019c.7z "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin" -mqs -ms=on
+          
+      - name: uploadexe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exacu
+          path: C:\v2019c.7z
+          compression-level: 0
