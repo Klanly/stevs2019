@@ -21,16 +21,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: dlru
+        run: |
+          git clone https://github.com/llvm/llvm-project.git
+          md build
+          cmake -G Ninja ../llvm-project/llvm -DLLVM_TARGETS_TO_BUILD="X86" -DLLVM_NATIVE_ARCH=x86_64 -DLLVM_HOST_TRIPLE=x86_64-window-x86-gnu -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_MAKE_PROGRAM=ninja -DLLVM_ENABLE_ASSERTIONS=ON -DLLVM_ENABLE_RUNTIMES=all -DLLVM_ENABLE_PROJECTS="compiler-rt;polly;bolt;clang;clang-tools-extra;libc;libclc;lld;lldb;mlir;openmp;pstl"
+
       - name: ziping
         if: always()
-        run: 7z a C:\v2019c.7z "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin" -mqs -ms=on
+        run: 7z a C:\llvmbd.7z .\build
           
       - name: uploadexe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: exacu
-          path: C:\v2019c.7z
+          name: ninjpf
+          path: C:\llvmbd.7z
           compression-level: 0
           
           
